@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta property="og:title" content="GemGenève x Hôtel Président">
-  <meta property="og:description" content="Lien de réservation pour GemGenève">
-  <meta property="og:image" content="https://media.discordapp.net/attachments/1300056229984600064/1405207473035542559/Exterior_at_twilight_-_Hotel_President_Wilson_a_Luxury_Collection_Hotel_Geneva_-_Copie.jpg?format=webp&width=939&height=556">
-  <meta property="og:type" content="website">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirection...</title>
+  <meta charset="UTF-8" />
+  <title>GemGenève x Hôtel Président</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="GemGenève x Hôtel Président" />
+  <meta property="og:description" content="Lien de réservation pour GemGenève" />
+  <meta property="og:image" content="https://media.discordapp.net/attachments/1300056229984600064/1405207473035542559/Exterior_at_twilight_-_Hotel_President_Wilson_a_Luxury_Collection_Hotel_Geneva_-_Copie.jpg?format=webp&width=939&height=556" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <script>
-    // On attend 100ms pour éviter que l'OS prenne la main
-    setTimeout(function(){
-      // On enlève le #noredirect et on charge le vrai lien
-      window.location.href = "https://app.marriott.com/reslink?id=1755093334997&key=GRP&app=resvlink&preview=1";
-    }, 100);
+    // Soumission auto en POST pour éviter l'interception "app link"
+    window.addEventListener('load', function () {
+      document.getElementById('go').submit();
+    });
   </script>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; padding: 24px; }
+  </style>
 </head>
 <body>
-  <p>Redirection en cours...</p>
+  <p>Redirection en cours vers la page de réservation…</p>
+
+  <!--
+    On envoie un POST vers l'URL de Marriott.
+    L'URL conserve la query string; la plupart des serveurs traitent le GET/POST pareil quand les paramètres sont dans l'URL.
+    Si jamais ça ne passe pas, on a un lien de secours en dessous.
+  -->
+  <form id="go" method="POST" action="https://app.marriott.com/reslink?id=1755093334997&key=GRP&app=resvlink&preview=1" target="_self">
+    <!-- Aucun champ nécessaire: les paramètres sont déjà dans la query de l'action -->
+    <noscript>
+      <button type="submit">Continuer</button>
+    </noscript>
+  </form>
+
+  <p style="margin-top:16px;">
+    Si rien ne se passe, <a href="https://app.marriott.com/reslink?id=1755093334997&key=GRP&app=resvlink&preview=1" rel="nofollow">clique ici</a>.
+  </p>
 </body>
 </html>
